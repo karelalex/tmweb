@@ -79,6 +79,10 @@ table .name {
     width: 15%;
 }
 
+table .action{
+    width: min-content;
+}
+
 table tr:nth-child(odd) td {
     background-color: rgb(255, 253, 245);
 }

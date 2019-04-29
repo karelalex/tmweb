@@ -11,7 +11,9 @@
 <html>
 <head>
     <title>Title</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/main.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -23,12 +25,14 @@
             <col class="id">
             <col class="name">
             <col class="desc">
+            <col class="action">
         </colgroup>
         <tr>
             <th>№</th>
             <th>ID</th>
             <th>Имя</th>
             <th>Описание</th>
+            <th>Действия</th>
         </tr>
         <%List projects = (List<Project>) request.getAttribute("projects");%>
         <c:set scope="page" value="<%=projects%>" var="projects"/>
@@ -38,6 +42,11 @@
                 <td>${p.id}</td>
                 <td>${p.name}</td>
                 <td>${p.description}</td>
+                <td>
+                    <a href="<%=request.getContextPath()%>/showproject?pid=${p.id}"><i class="fas fa-receipt"></i></a>&nbsp;
+                    <a href="<%=request.getContextPath()%>/editproject?pid=${p.id}"><i class="fas fa-edit"></i></a>&nbsp;
+                    <a href="<%=request.getContextPath()%>/removeproject?pid=${p.id}"><i class="fas fa-trash-alt"></i></a>
+                </td>
             </tr>
         </c:forEach>
     </table>

@@ -48,7 +48,7 @@
             <div class="prop-desc">${project.status.displayName}</div>
         </div>
         <div class="but-cover">
-            <button type="button">Редактировать</button>
+            <a href="<%=request.getContextPath()%>/editproject?pid=${project.id}"> <button type="button">Редактировать</button></a>
         </div>
     </c:if>
 
