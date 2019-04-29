@@ -1,8 +1,9 @@
 package ru.karelin.tmweb.repository;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.karelin.tmweb.entity.Project;
-import ru.karelin.tmweb.enumeration.Status;
 
 import java.util.*;
 
@@ -14,25 +15,21 @@ public class ProjectRepository {
     }
 
     private ProjectRepository() {
-        for (int i = 0; i < 10; i++) {
-            Project p = new Project();
-            p.setName("Project " + i);
-            p.setDescription(p.getName() + " description");
-            p.setStartingDate(new Date());
-            p.setFinishDate(new Date());
-            p.setStatus(Status.PLANNED);
-            projectMap.put(p.getId(), p);
-        }
+
     }
     public List<Project> findAll(){
         return new ArrayList<>(projectMap.values());
     }
-    public Project find(String projectId) {
+    public List<Project> findAllByUserId(String userId){return filterByUserId(findAll(), userId);}
+    public Project find(String id) {
         for (Project p: projectMap.values()
              ) {
-            if(p.getId().equals(projectId)) return p;
+            if(p.getId().equals(id)) return p;
         }
         return null;
+    }
+    public Project findByIdAndUserId(String id, String userId){
+        return filterByUserId(find(id), userId);
     }
     public void save(Project p){
         projectMap.put(p.getId(), p);
@@ -40,5 +37,21 @@ public class ProjectRepository {
 
     public void remove(@NotNull Project project) {
         projectMap.remove(project.getId());
+    }
+    private List<Project> filterByUserId(List<Project> projects, String userId) {
+        Iterator<Project> iter = projects.iterator();
+        while(iter.hasNext()){
+            Project p = iter.next();
+            if (!p.getUserId().equals(userId)){
+                iter.remove();
+            }
+        }
+        return projects;
+    }
+    @Contract("null, _ -> null")
+    @Nullable
+    private Project filterByUserId(@Nullable Project project, String userId) {
+        if (project!=null && project.getUserId().equals(userId)) return project;
+        else return null;
     }
 }

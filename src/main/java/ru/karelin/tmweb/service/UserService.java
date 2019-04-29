@@ -21,4 +21,7 @@ public class UserService {
         }
         return null;
     }
+    public User find(String id){
+        return userRepository.find(id);
+    }
 }

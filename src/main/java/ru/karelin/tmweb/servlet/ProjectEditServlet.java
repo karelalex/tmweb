@@ -2,8 +2,10 @@ package ru.karelin.tmweb.servlet;
 
 import lombok.SneakyThrows;
 import ru.karelin.tmweb.entity.Project;
+import ru.karelin.tmweb.entity.User;
 import ru.karelin.tmweb.enumeration.Status;
 import ru.karelin.tmweb.service.ProjectService;
+import ru.karelin.tmweb.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,15 +20,18 @@ import java.text.SimpleDateFormat;
 public class ProjectEditServlet extends HttpServlet {
     private final ProjectService projectService = ProjectService.getInstance();
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private final UserService userService = UserService.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        final User currentUser = userService.find((String)req.getSession().getAttribute("userId"));
+        req.setAttribute("user", currentUser);
         String projectId = req.getParameter("pid");
        if(projectId==null || projectId.isEmpty()){
            resp.sendError(404, "Необходим id проекта");
            return;
        }
        else {
-           Project project = projectService.find(projectId);
+           Project project = projectService.findByIdAndUserId(projectId, currentUser.getId());
            req.setAttribute("project", project);
        }
         req.getRequestDispatcher("WEB-INF/views/edit-project.jsp").forward(req, resp);
@@ -35,7 +40,10 @@ public class ProjectEditServlet extends HttpServlet {
     @Override
     @SneakyThrows
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final Project project = projectService.find(req.getParameter("pid"));
+        final User currentUser = userService.find((String)req.getSession().getAttribute("userId"));
+        req.setAttribute("user", currentUser);
+        final Project project = projectService.findByIdAndUserId(req.getParameter("pid"), currentUser.getId());
+
         if (project==null){
             resp.sendError(404, "Проект не найден");
             return;

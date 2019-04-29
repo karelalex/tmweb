@@ -14,4 +14,5 @@ public class Project extends AbstractEntity {
     private Date startingDate;
     private Date finishDate;
     private Status status;
+    private String userId;
 }

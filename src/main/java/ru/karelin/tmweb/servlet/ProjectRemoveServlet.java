@@ -1,6 +1,7 @@
 package ru.karelin.tmweb.servlet;
 
 import org.jetbrains.annotations.Nullable;
+import ru.karelin.tmweb.service.ProjectService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +12,10 @@ import java.io.IOException;
 
 @WebServlet("/removeproject")
 public class ProjectRemoveServlet extends HttpServlet {
+    ProjectService projectService = ProjectService.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        @Nullable String userId = (String)req.getSession().getAttribute("userId");
+        projectService.remove(req.getParameter("pid"), (String)req.getSession().getAttribute("userId"));
+        resp.sendRedirect(req.getContextPath()+"/showproject");
     }
 }
