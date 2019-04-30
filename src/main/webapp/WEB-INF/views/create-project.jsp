@@ -19,7 +19,7 @@
 <jsp:include page="header.jsp"/>
 <div class="content">
 
-    <h1>Описание проекта</h1>
+    <h1>Создание проекта</h1>
     <form action="<%=request.getContextPath()%>/createproject" method="post" enctype="application/x-www-form-urlencoded">
         <div class="prop-cover">
             <div class="prop-name"><p>Название</p></div>

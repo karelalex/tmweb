@@ -19,7 +19,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div class="content">
-    <h1>Список проектов</h1>
+    <h1>Список задач</h1>
     <table>
         <colgroup>
             <col class="number">

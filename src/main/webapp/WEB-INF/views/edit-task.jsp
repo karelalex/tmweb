@@ -21,7 +21,7 @@
 <jsp:include page="header.jsp"/>
 <div class="content">
 
-    <h1>Создание задачи</h1>
+    <h1>Редактирование задачи</h1>
     <form action="<%=request.getContextPath()%>/edittask" method="post" enctype="application/x-www-form-urlencoded">
         <%Task task = (Task) request.getAttribute("task");%>
         <c:set var="task" value="<%=task%>" scope="page"/>

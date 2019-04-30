@@ -24,4 +24,12 @@ public class UserService {
     public User find(String id){
         return userRepository.find(id);
     }
+
+    public boolean checkLogin(String login) {
+        return userRepository.findByLogin(login)!=null;
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }

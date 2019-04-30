@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div class="content">
-    <h1>Приветствуем на заглавной странице нашего офигенного сайта</h1>
+    <h1>Добро пожаловать на заглавную страницу нашего офигенного сайта</h1>
     <img class="big-logo" src="<%=request.getContextPath()%>/images/clock.png" alt="Часы" />
 </div>
 <jsp:include page="footer.jsp"/>

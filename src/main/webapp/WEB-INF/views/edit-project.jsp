@@ -23,7 +23,7 @@
         <h1>Проекта с указанным id не существует</h1>
     </c:if>
     <c:if test="${project!=null}">
-        <h1>Описание проекта</h1>
+        <h1>Редактирование проекта</h1>
         <form action="<%=request.getContextPath()%>/editproject" method="post" enctype="application/x-www-form-urlencoded">
             <div class="prop-cover">
                 <div class="prop-name"><p>Id</p></div>
