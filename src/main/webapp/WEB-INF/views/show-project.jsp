@@ -17,38 +17,40 @@
 <jsp:include page="header.jsp"/>
 <div class="content">
     <% Project project = (Project)request.getAttribute("project");%>
-      <c:set scope="page" var="task" value="<%=project%>" />
-    <c:if test="${task==null}">
+      <c:set scope="page" var="project" value="<%=project%>" />
+    <c:if test="${project==null}">
         <h1>Проекта с указанным id  не существует</h1>
     </c:if>
-    <c:if test="${task!=null}">
+    <c:if test="${project!=null}">
         <h1>Описание проекта</h1>
         <div class="prop-cover">
             <div class="prop-name"><p>Id</p></div>
-            <div class="prop-desc">${task.id}</div>
+            <div class="prop-desc">${project.id}</div>
         </div>
         <div class="prop-cover">
             <div class="prop-name"><p>Название</p></div>
-            <div class="prop-desc">${task.name}</div>
+            <div class="prop-desc">${project.name}</div>
         </div>
         <div class="prop-cover">
             <div class="prop-name"><p>Описание</p></div>
-            <div class="prop-desc">${task.description}</div>
+            <div class="prop-desc">${project.description}</div>
         </div>
         <div class="prop-cover">
             <div class="prop-name"><p>Дата начала</p></div>
-            <div class="prop-desc"><fmt:formatDate value="${task.startingDate}" dateStyle="long" type="date" /> </div>
+            <div class="prop-desc"><fmt:formatDate value="${project.startingDate}" dateStyle="long" type="date" /> </div>
         </div>
         <div class="prop-cover">
             <div class="prop-name"><p>Дата окончания</p></div>
-            <div class="prop-desc"><fmt:formatDate value="${task.finishDate}" dateStyle="long" type="date"/></div>
+            <div class="prop-desc"><fmt:formatDate value="${project.finishDate}" dateStyle="long" type="date"/></div>
         </div>
         <div class="prop-cover">
             <div class="prop-name"><p>Текущий статус</p></div>
-            <div class="prop-desc">${task.status.displayName}</div>
+            <div class="prop-desc">${project.status.displayName}</div>
         </div>
-        <div class="but-cover">
-            <a href="<%=request.getContextPath()%>/editproject?pid=${task.id}"> <button type="button">Редактировать</button></a>
+        <div class="but-cover margin_10">
+            <a href="<%=request.getContextPath()%>/showtask?pid=${project.id}"> <button type="button">Задачи</button></a>
+            <a href="<%=request.getContextPath()%>/editproject?pid=${project.id}"> <button type="button">Редактировать</button></a>
+            <a href="<%=request.getContextPath()%>/removeproject?pid=${project.id}"> <button type="button">Удалить</button></a>
         </div>
     </c:if>
 

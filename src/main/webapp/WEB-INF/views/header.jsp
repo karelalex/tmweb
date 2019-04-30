@@ -20,6 +20,7 @@
         <li><a href="<%=request.getContextPath()%>/">Главная</a></li>
         <c:if test="${user==null}">
             <li><a href="<%=request.getContextPath()%>/login">Вход</a></li>
+            <li><a href="<%=request.getContextPath()%>/reg">Регистрация</a></li>
         </c:if>
         <c:if test="${user!=null}">
             <li><a href="<%=request.getContextPath()%>/showproject">Проекты</a></li>

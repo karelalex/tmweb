@@ -23,6 +23,7 @@
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 .header li a {
@@ -81,6 +82,7 @@ table .name {
 
 table .action{
     width: min-content;
+    white-space: nowrap;
 }
 
 table tr:nth-child(odd) td {
@@ -155,9 +157,13 @@ td, th {
 
 }
 
-.but-cover {
+.margin_10{
     margin-left: 10%;
 }
+.margin_5{
+    margin-left: 5%;
+}
+
 
 .but-cover button {
     min-height: 40px;

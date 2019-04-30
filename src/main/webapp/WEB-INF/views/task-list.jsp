@@ -43,7 +43,7 @@
             <tr>
                 <td>${iter.count}</td>
                 <td>${t.id}</td>
-                <td>${t.projectId}</td>
+                <td><a href="<%=request.getContextPath()%>/showproject?pid=${t.projectId}">${t.projectId}</a></td>
                 <td>${t.name}</td>
                 <td>${t.description}</td>
                 <td>
@@ -54,6 +54,16 @@
             </tr>
         </c:forEach>
     </table>
+    <%String projectId = request.getParameter("pid");%>
+    <c:set scope="page" value="<%=projectId%>" var="pid" />
+    <div class="but-cover margin_5">
+        <c:if test="${pid==null || pid.length()==0}">
+        <a href="<%=request.getContextPath()%>/createtask"> <button type="button">Создать</button></a>
+        </c:if>
+        <c:if test="${pid!=null && pid.length()>0}">
+            <a href="<%=request.getContextPath()%>/createtask?pid=${pid}"> <button type="button">Создать</button></a>
+        </c:if>
+    </div>
 
 </div>
 <jsp:include page="footer.jsp"/>

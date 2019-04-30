@@ -29,7 +29,7 @@
             <div class="prop-desc"><input type="password" name="pass" placeholder="Пароль" />
             </div>
         </div>
-        <div class="but-cover">
+        <div class="but-cover margin_10">
             <button type="submit">Отправить</button>
         </div>
     </form>

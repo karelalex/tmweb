@@ -42,15 +42,18 @@
                 <td>${p.id}</td>
                 <td>${p.name}</td>
                 <td>${p.description}</td>
-                <td>
+                <td class="action">
                     <a href="<%=request.getContextPath()%>/showproject?pid=${p.id}"><i class="fas fa-receipt"></i></a>&nbsp;
                     <a href="<%=request.getContextPath()%>/editproject?pid=${p.id}"><i class="fas fa-edit"></i></a>&nbsp;
-                    <a href="<%=request.getContextPath()%>/removeproject?pid=${p.id}"><i class="fas fa-trash-alt"></i></a>
+                    <a href="<%=request.getContextPath()%>/removeproject?pid=${p.id}"><i class="fas fa-trash-alt"></i></a>&nbsp;
                     <a href="<%=request.getContextPath()%>/showtask?pid=${p.id}"><i class="fas fa-list-alt"></i></a>
                 </td>
             </tr>
         </c:forEach>
     </table>
+    <div class="but-cover margin_5">
+        <a href="<%=request.getContextPath()%>/createproject"> <button type="button">Создать</button></a>
+    </div>
 
 </div>
 <jsp:include page="footer.jsp"/>

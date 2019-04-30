@@ -20,17 +20,17 @@
     <% Task task = (Task) request.getAttribute("task");%>
       <c:set scope="page" var="task" value="<%=task%>" />
     <c:if test="${task==null}">
-        <h1>Проекта с указанным id  не существует</h1>
+        <h1>Задачи с указанным id  не существует</h1>
     </c:if>
     <c:if test="${task!=null}">
-        <h1>Описание проекта</h1>
+        <h1>Описание задачи</h1>
         <div class="prop-cover">
             <div class="prop-name"><p>Id</p></div>
             <div class="prop-desc">${task.id}</div>
         </div>
         <div class="prop-cover">
             <div class="prop-name"><p>Id Проекта</p></div>
-            <div class="prop-desc">${task.projectId}</div>
+            <div class="prop-desc"><a href="<%=request.getContextPath()%>/showproject?pid=${task.projectId}"> ${task.projectId}</a></div>
         </div>
         <div class="prop-cover">
             <div class="prop-name"><p>Название</p></div>
@@ -52,8 +52,9 @@
             <div class="prop-name"><p>Текущий статус</p></div>
             <div class="prop-desc">${task.status.displayName}</div>
         </div>
-        <div class="but-cover">
+        <div class="but-cover margin_10">
             <a href="<%=request.getContextPath()%>/edittask?tid=${task.id}"> <button type="button">Редактировать</button></a>
+            <a href="<%=request.getContextPath()%>/removetask?tid=${task.id}"> <button type="button">Удалить</button></a>
         </div>
     </c:if>
 

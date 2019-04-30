@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/createproject", "/editproject", "/removeproject", "/showproject", "/showtask", "/edittask"})
+@WebFilter(urlPatterns = {"/createproject", "/editproject", "/removeproject", "/showproject", "/showtask", "/edittask", "/createtask", "/removetask"})
 public class AccessFilter implements Filter {
 
 

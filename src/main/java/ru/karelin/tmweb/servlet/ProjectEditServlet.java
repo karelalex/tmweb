@@ -41,7 +41,6 @@ public class ProjectEditServlet extends HttpServlet {
     @SneakyThrows
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final User currentUser = userService.find((String)req.getSession().getAttribute("userId"));
-        req.setAttribute("user", currentUser);
         final Project project = projectService.findByIdAndUserId(req.getParameter("pid"), currentUser.getId());
 
         if (project==null){
@@ -54,6 +53,6 @@ public class ProjectEditServlet extends HttpServlet {
         project.setFinishDate(dateFormat.parse(req.getParameter("finishDate")));
         project.setStatus(Status.valueOf(req.getParameter("status")));
         projectService.save(project);
-        resp.sendRedirect(req.getContextPath()+"/showproject");
+        resp.sendRedirect(req.getContextPath()+"/showproject?pid="+project.getId());
     }
 }

@@ -29,4 +29,13 @@ public class TaskService {
     public List<Task> findAllByUserIdAndProjectId(String userId, String projectId) {
         return taskRepository.findAllByUserIdAndProjectId(userId, projectId);
     }
+
+    public void save(Task task) {
+        taskRepository.save(task);
+    }
+
+    public void remove(String id, String userId) {
+        Task task = taskRepository.findByIdAndUserId(id, userId);
+        if (task!=null) taskRepository.remove(task);
+    }
 }
