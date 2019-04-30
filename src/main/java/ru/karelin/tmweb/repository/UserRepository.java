@@ -20,11 +20,7 @@ public class UserRepository {
     }
 
     public User find(String userId) {
-        for (User u : userMap.values()
-        ) {
-            if (u.getId().equals(userId)) return u;
-        }
-        return null;
+        return userMap.get(userId);
     }
 
     public void save(User user) {

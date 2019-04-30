@@ -2,10 +2,10 @@ package ru.karelin.tmweb.servlet;
 
 
 import ru.karelin.tmweb.entity.Project;
+import ru.karelin.tmweb.entity.Task;
 import ru.karelin.tmweb.entity.User;
 import ru.karelin.tmweb.enumeration.Status;
-import ru.karelin.tmweb.repository.ProjectRepository;
-import ru.karelin.tmweb.repository.UserRepository;
+import ru.karelin.tmweb.repository.*;
 import ru.karelin.tmweb.service.UserService;
 import ru.karelin.tmweb.util.MD5Generator;
 
@@ -29,7 +29,8 @@ public class MainServlet extends HttpServlet {
         user.setUsername("Саня");
         UserRepository userRepository = UserRepository.getInstance();
         userRepository.save(user);
-        ProjectRepository projectRepository = ProjectRepository.getInstance();
+        ProjectRepository projectRepository = ProjectRepositoryImpl.getInstance();
+        TaskRepository taskRepository = TaskRepositoryImpl.getInstance();
         for (int i = 0; i < 10; i++) {
             Project p = new Project();
             p.setName("Проект " + i);
@@ -39,6 +40,17 @@ public class MainServlet extends HttpServlet {
             p.setStatus(Status.PLANNED);
             p.setUserId(user.getId());
             projectRepository.save(p);
+            for(int j = 0; j<9; j++) {
+                Task t = new Task();
+                t.setName("Задача" +j);
+                t.setDescription(t.getName() + " классное описание");
+                t.setStartingDate(new Date());
+                t.setFinishDate(new Date());
+                t.setStatus(Status.PLANNED);
+                t.setUserId(user.getId());
+                t.setProjectId(p.getId());
+                taskRepository.save(t);
+            }
         }
         User user2 = new User();
         user2.setLogin("bb");
@@ -54,6 +66,17 @@ public class MainServlet extends HttpServlet {
             p.setStatus(Status.PLANNED);
             p.setUserId(user2.getId());
             projectRepository.save(p);
+            for(int j = 0; j<3; j++) {
+                Task t = new Task();
+                t.setName("Задачаща" +j);
+                t.setDescription(t.getName() + " классное и хреновое описание");
+                t.setStartingDate(new Date());
+                t.setFinishDate(new Date());
+                t.setStatus(Status.PLANNED);
+                t.setUserId(user2.getId());
+                t.setProjectId(p.getId());
+                taskRepository.save(t);
+            }
         }
     }
 

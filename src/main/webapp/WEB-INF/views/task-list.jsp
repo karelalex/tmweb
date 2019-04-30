@@ -1,5 +1,6 @@
+<%@ page import="ru.karelin.tmweb.entity.Task" %>
 <%@ page import="java.util.List" %>
-<%@ page import="ru.karelin.tmweb.entity.Project" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: alexk
   Date: 24.04.2019
@@ -23,6 +24,7 @@
         <colgroup>
             <col class="number">
             <col class="id">
+            <col class="id">
             <col class="name">
             <col class="desc">
             <col class="action">
@@ -30,23 +32,24 @@
         <tr>
             <th>№</th>
             <th>ID</th>
+            <th>ID Проекта</th>
             <th>Имя</th>
             <th>Описание</th>
             <th>Действия</th>
         </tr>
-        <%List projects = (List<Project>) request.getAttribute("projects");%>
-        <c:set scope="page" value="<%=projects%>" var="tasks"/>
-        <c:forEach items="${tasks}" var="p" varStatus="iter">
+        <%List<Task> tasks = (List<Task>)request.getAttribute("tasks");%>
+        <c:set scope="page" value="<%=tasks%>" var="tasks"/>
+        <c:forEach items="${tasks}" var="t" varStatus="iter">
             <tr>
                 <td>${iter.count}</td>
-                <td>${p.id}</td>
-                <td>${p.name}</td>
-                <td>${p.description}</td>
+                <td>${t.id}</td>
+                <td>${t.projectId}</td>
+                <td>${t.name}</td>
+                <td>${t.description}</td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/showproject?pid=${p.id}"><i class="fas fa-receipt"></i></a>&nbsp;
-                    <a href="<%=request.getContextPath()%>/editproject?pid=${p.id}"><i class="fas fa-edit"></i></a>&nbsp;
-                    <a href="<%=request.getContextPath()%>/removeproject?pid=${p.id}"><i class="fas fa-trash-alt"></i></a>
-                    <a href="<%=request.getContextPath()%>/showtask?pid=${p.id}"><i class="fas fa-list-alt"></i></a>
+                    <a href="<%=request.getContextPath()%>/showtask?tid=${t.id}"><i class="fas fa-receipt"></i></a>&nbsp;
+                    <a href="<%=request.getContextPath()%>/edittask?tid=${t.id}"><i class="fas fa-edit"></i></a>&nbsp;
+                    <a href="<%=request.getContextPath()%>/removetask?tid=${t.id}"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         </c:forEach>

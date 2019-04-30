@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="ru.karelin.tmweb.entity.Project" %><%--
+<%@ page import="ru.karelin.tmweb.entity.Task" %>
+<%--
   Created by IntelliJ IDEA.
   User: alexk
   Date: 25.04.2019
@@ -10,14 +11,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Описание задачи</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/main.css"/>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
 <div class="content">
-    <% Project project = (Project)request.getAttribute("project");%>
-      <c:set scope="page" var="task" value="<%=project%>" />
+    <% Task task = (Task) request.getAttribute("task");%>
+      <c:set scope="page" var="task" value="<%=task%>" />
     <c:if test="${task==null}">
         <h1>Проекта с указанным id  не существует</h1>
     </c:if>
@@ -26,6 +27,10 @@
         <div class="prop-cover">
             <div class="prop-name"><p>Id</p></div>
             <div class="prop-desc">${task.id}</div>
+        </div>
+        <div class="prop-cover">
+            <div class="prop-name"><p>Id Проекта</p></div>
+            <div class="prop-desc">${task.projectId}</div>
         </div>
         <div class="prop-cover">
             <div class="prop-name"><p>Название</p></div>
@@ -48,7 +53,7 @@
             <div class="prop-desc">${task.status.displayName}</div>
         </div>
         <div class="but-cover">
-            <a href="<%=request.getContextPath()%>/editproject?pid=${task.id}"> <button type="button">Редактировать</button></a>
+            <a href="<%=request.getContextPath()%>/edittask?tid=${task.id}"> <button type="button">Редактировать</button></a>
         </div>
     </c:if>
 

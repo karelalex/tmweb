@@ -1,9 +1,9 @@
 package ru.karelin.tmweb.repository;
 
-public class TaskRepository {
-    private static final  TaskRepository ourInstance  = new TaskRepository();
-    public static TaskRepository getInstance() {
-        return ourInstance;
-    }
-    private TaskRepository(){};
+import ru.karelin.tmweb.entity.Task;
+
+import java.util.List;
+
+public interface TaskRepository extends EntityRepository<Task> {
+    List<Task> findAllByUserIdAndProjectId(String userId, String projectId);
 }

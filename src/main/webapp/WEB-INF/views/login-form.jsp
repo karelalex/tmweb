@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="ru.karelin.tmweb.entity.Project" %>
-<%@ page import="ru.karelin.tmweb.enumeration.Status" %>
-<%@ page import="java.util.Date" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: alexk
   Date: 25.04.2019

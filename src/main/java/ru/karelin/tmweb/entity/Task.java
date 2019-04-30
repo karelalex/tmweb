@@ -15,4 +15,5 @@ public class Task extends AbstractEntity{
     private Date finishDate;
     private Status status;
     private String projectId;
+    private String userId;
 }

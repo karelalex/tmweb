@@ -18,45 +18,45 @@
 <jsp:include page="header.jsp"/>
 <div class="content">
     <% Project project = (Project) request.getAttribute("project");%>
-    <c:set scope="page" var="project" value="<%=project%>"/>
-    <c:if test="${project==null}">
+    <c:set scope="page" var="task" value="<%=project%>"/>
+    <c:if test="${task==null}">
         <h1>Проекта с указанным id не существует</h1>
     </c:if>
-    <c:if test="${project!=null}">
+    <c:if test="${task!=null}">
         <h1>Описание проекта</h1>
         <form action="<%=request.getContextPath()%>/editproject" method="post" enctype="application/x-www-form-urlencoded">
             <div class="prop-cover">
                 <div class="prop-name"><p>Id</p></div>
-                <div class="prop-desc">${project.id}</div>
-                <input value="${project.id}" type="hidden" name="pid">
+                <div class="prop-desc">${task.id}</div>
+                <input value="${task.id}" type="hidden" name="pid">
             </div>
             <div class="prop-cover">
                 <div class="prop-name"><p>Название</p></div>
                 <div class="prop-desc">
-                    <input type="text" name = "name" lass="prop-desc" value="${project.name}"/></div>
+                    <input type="text" name = "name" lass="prop-desc" value="${task.name}"/></div>
             </div>
             <div class="prop-cover">
                 <div class="prop-name"><p>Описание</p></div>
-                <div class="prop-desc"><textarea rows="3" name="desc">${project.description}</textarea>
+                <div class="prop-desc"><textarea rows="3" name="desc">${task.description}</textarea>
                 </div>
             </div>
             <div class="prop-cover">
                 <div class="prop-name"><p>Дата начала</p></div>
                 <div class="prop-desc"><input type="date"
-                                              name = "startDate" value="<fmt:formatDate value="${project.startingDate}" pattern="yyyy-MM-dd"/>"/>
+                                              name = "startDate" value="<fmt:formatDate value="${task.startingDate}" pattern="yyyy-MM-dd"/>"/>
                 </div>
             </div>
             <div class="prop-cover">
                 <div class="prop-name"><p>Дата окончания</p></div>
                 <div class="prop-desc"><input type="date" name = "finishDate"
-                                              value="<fmt:formatDate value="${project.finishDate}"  pattern="yyyy-MM-dd"/>"/>
+                                              value="<fmt:formatDate value="${task.finishDate}"  pattern="yyyy-MM-dd"/>"/>
                 </div>
             </div>
             <div class="prop-cover">
                 <div class="prop-name"><p>Текущий статус</p></div>
                 <div class="prop-desc"><select name="status">
                     <c:forEach var="stat" items="<%=Status.values()%>">
-                        <option value="${stat.name()}" ${stat.name() == project.status.name() ? 'selected="selected"' : ''}>${stat.displayName}</option>
+                        <option value="${stat.name()}" ${stat.name() == task.status.name() ? 'selected="selected"' : ''}>${stat.displayName}</option>
                     </c:forEach>
                 </select></div>
             </div>
